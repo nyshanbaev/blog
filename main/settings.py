@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     #modules
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters',
     #my apps
     'applications.account',
     'applications.post',
@@ -146,5 +147,11 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication'
-    ]
+    ],
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    # 'PAGE_SIZE': 1
 }
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media/'
