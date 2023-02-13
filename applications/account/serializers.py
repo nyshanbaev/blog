@@ -15,8 +15,8 @@ class RegisterSerializers(serializers.ModelSerializer):
     
     def validate_email(self, email):
         print('Hello')
-        return email
-    
+        return email    
+
     def validate(self, attrs):
         p1 = attrs.get('password')
         p2 = attrs.pop('password2')
@@ -49,101 +49,6 @@ class LoginSerializer(serializers.Serializer):
         attrs['user'] = user
 
         return attrs 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,8 +1,18 @@
 from rest_framework import serializers
-from applications.post.models import Post
+from applications.post.models import *
 from .models import User
+
+
+class PostImageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = PostImage 
+        fields = '__all__'
+        # exclude = ('post',)
+
 class PostSerializers(serializers.ModelSerializer):
     # owner = serializers.ReadOnlyField()
+    images = PostImageSerializer(many=True, read_only=True)
     owner = serializers.ReadOnlyField(source='owner.email')
     class Meta:
         model = Post 
@@ -17,8 +27,8 @@ class PostSerializers(serializers.ModelSerializer):
     #     representation['owner'] = instance.owner.email
     #     return representation
     
-    # def create(self, validated_data):
-    #     validated_data['owner'] = self.context['request'].user
+    def create(self, validated_data):
+        validated_data['owner'] = self.context['request'].user
 
 
     #     return super().create(validated_data)

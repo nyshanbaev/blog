@@ -1,6 +1,6 @@
 from rest_framework import generics
-from applications.post.models import Post
-from applications.post.serializers import PostSerializers
+from applications.post.models import *
+from applications.post.serializers import *
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from applications.post.permissions import IsOwner
 from django_filters.rest_framework import DjangoFilterBackend
@@ -60,6 +60,9 @@ class PostListCreateAPIVIew(generics.ListCreateAPIView):
     #         queryset = queryset.filter(owner=filter_owner)
     #     return queryset
 
+    def get_serializer_context(self):
+    
+        return super().get_serializer_context()
 
 class PostAllAPIView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwner]
@@ -67,3 +70,7 @@ class PostAllAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializers
 
 
+class CreateImageAPIView(generics.CreateAPIView):
+    queryset = PostImage.objects.all()
+    serializer_class = PostImageSerializer
+    permission_classes = [IsAuthenticated]
