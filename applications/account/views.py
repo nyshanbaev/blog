@@ -13,7 +13,6 @@ class RegisterAPIView(APIView):
         serializer = RegisterSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        # RegisterSerializers()
 
         return Response('Registration is ok. You have email with activation code', status=201)
 
